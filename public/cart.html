@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+      <title>Cart</title>
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">Jewellery</a>
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="gifting.html">Gifting</a></li>
+                <li><a href="offers.html">Offers</a></li>
+                <li><a href="diamonds.html">Diamonds</a></li>
+                <li><a href="newarrivals.html">New Arrivals</a></li>
+                <li class="cart">
+                    <a href="cart.html">
+                        <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart" class="cart-icon">
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+                <li class="user" id="user-icon" style="display: block;">
+                    <a href="login.html" id="user-icon-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User  " class="user-icon">
+                    </a>
+                </li>
+                <li class="user" id="user-info" style="display: none;">
+                  <span id="user-name" class="user-initial"></span>
+                  <button id="logout-button">Logout</button>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+      <section id="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items">
+          <!-- Cart items will be displayed here -->
+
+        </div>
+        <h3 id="total-price">Total: $0.00</h3>
+      </section>
+      <script>
+        function updateUserInterface() {
+         const userNameElement = document.getElementById('user-name');
+         const userIcon = document.getElementById('user-icon');
+         const userInfo = document.getElementById('user-info');
+         const logoutButton = document.getElementById('logout-button');
+ 
+         const userEmail = localStorage.getItem('userEmail');
+         if (userEmail) {
+             // Display the first letter of the user's email
+             userNameElement.textContent = userEmail.charAt(0).toUpperCase();
+             userIcon.style.display = 'none';
+             userInfo.style.display = 'block';
+         } else {
+             userIcon.style.display = 'block';
+             userInfo.style.display = 'none';
+         }
+     }
+ 
+     // Function to handle logout
+     function handleLogout() {
+         localStorage.removeItem('userEmail'); // Clear user email from local storage
+         updateUserInterface(); // Update the UI
+         window.location.href = 'login.html'; // Redirect to login page
+     }
+ 
+     // Attach event listener to the logout button
+     document.getElementById('logout-button').addEventListener('click', handleLogout);
+ 
+     // Call the function to update the UI on page load
+     updateUserInterface();
+ </script>
+      <script src="script.js"></script>
+    </body>
+    </html>
